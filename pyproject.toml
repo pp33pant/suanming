@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "suanming"
+version = "0.1.0"
+description = "八字算命：四柱、五行、十神、大运、流年与 AI 命局解读"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "pp33pant" }]
+keywords = ["bazi", "suanming", "chinese-astrology", "four-pillars", "ganzhi"]
+dependencies = [
+  "sxtwl>=2.0.6",
+  "typer>=0.12.0",
+  "rich>=13.7.0",
+  "pydantic>=2.6.0",
+]
+
+[project.optional-dependencies]
+ai = ["openai>=1.30.0"]
+dev = ["pytest>=8.0.0", "ruff>=0.4.0", "mypy>=1.10.0"]
+
+[project.scripts]
+suanming = "suanming.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/suanming"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
