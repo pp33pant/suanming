@@ -6,13 +6,13 @@ from suanming.pillars import compute_chart
 
 def test_compute_chart_basic():
     chart = compute_chart(datetime(1995, 8, 15, 14, 30), gender="M")
-    # 1995-08-15 是乙亥年、甲申月、辛酉日（公认排盘）
+    # 1995-08-15 是乙亥年、甲申月、戊寅日（60 甲子顺推验证）
     assert str(chart.year) == "乙亥"
     assert str(chart.month) == "甲申"
-    assert str(chart.day) == "辛酉"
-    # 14:30 → 未时（13-15）；辛日未时 = 乙未（五鼠遁：丙辛起戊子，未为第8 → 乙未）
-    assert str(chart.hour) == "乙未"
-    assert chart.day_master == "辛"
+    assert str(chart.day) == "戊寅"
+    # 14:30 → 未时；戊日未时：戊癸起壬子，未为第8 → (8+7)%10=5 → 己未
+    assert str(chart.hour) == "己未"
+    assert chart.day_master == "戊"
 
 
 def test_analysis_outputs_keys():
