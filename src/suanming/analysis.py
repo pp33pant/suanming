@@ -59,7 +59,6 @@ def analyze(chart: BaziChart) -> Analysis:
             ten_god_count[ten_god(day_master, pillar.stem)] += 1
 
     me_e = stem_element(day_master)
-    same_or_gen = elem_score[me_e]
     # 生我 + 同我 视为帮扶
     from .elements import _GENERATES  # type: ignore[attr-defined]
     gen_me = next(k for k, v in _GENERATES.items() if v == me_e)

@@ -22,7 +22,8 @@ def _parse_dt(date: str, time: str) -> datetime:
 
 def _print_chart(chart, analysis) -> None:
     t = Table(title="四柱命盘", show_header=True, header_style="bold magenta")
-    t.add_column("年柱"); t.add_column("月柱"); t.add_column("日柱"); t.add_column("时柱")
+    for col in ("年柱", "月柱", "日柱", "时柱"):
+        t.add_column(col)
     t.add_row(str(chart.year), str(chart.month), str(chart.day), str(chart.hour))
     console.print(t)
     console.print(f"[bold]日主[/bold]：{analysis.day_master}（{analysis.day_master_element}）  "
@@ -58,7 +59,8 @@ def luck(
     _print_chart(chart, analysis)
     luck_pillars = compute_luck(chart, count=count)
     t = Table(title="大运", header_style="bold cyan")
-    t.add_column("步数"); t.add_column("干支"); t.add_column("起运岁"); t.add_column("起运年")
+    for col in ("步数", "干支", "起运岁", "起运年"):
+        t.add_column(col)
     for i, lp in enumerate(luck_pillars, 1):
         t.add_row(str(i), str(lp.pillar), f"{lp.start_age:.1f}", str(lp.start_year))
     console.print(t)
